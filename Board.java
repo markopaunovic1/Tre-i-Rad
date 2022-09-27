@@ -7,21 +7,22 @@ public class Board {
 
         Scanner input = new Scanner(System.in);
 
-        switch (input.nextInt()){
+        switch (input.nextInt()) {
 
-        }
+            case 1:
+            char[][] layer = {{' ', '║', ' ', '║', ' '},
+                              {'═', '╬', '═', '╬', '═',},
+                              {' ', ' ', ' ', ' ', ' '},
+                              {'═', '╬', '═', '╬', '═'},
+                              {' ', '║', ' ', '║', ' '}};
 
-        char[][] layer =  { { ' ', '│', ' ', '│', ' ' },
-                                 { '―', '―', '―',},
-                            { ' ', '│', ' ', '│', ' ' },
-                                 { '―', '―', '―',},
-                            { ' ', '│', ' ', '│', ' ' }};
-
-        for (char[] eachRow : layer) {
-            for(char c : eachRow){
-                System.out.print(c);
+            for (char[] eachRow : layer) {
+                for (char c : eachRow) {
+                    System.out.print(c);
+                }
+                System.out.println();
             }
-            System.out.println();
+            case 2:
         }
     }
 }
