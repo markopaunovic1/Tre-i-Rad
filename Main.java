@@ -1,11 +1,14 @@
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
+        Player p1 = new Player("P1");
+        Player p2 = new Player("P2");
 
-        System.out.println("Welcome to Tic Tac Toe");
+        new Board();
+
+       // System.out.println("Welcome to Tic Tac Toe");
+
 
 
     }
