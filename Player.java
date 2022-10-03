@@ -1,10 +1,7 @@
-import java.util.Scanner;
-
-public class Player {
+public class Player extends Board {
 
     String symbol;
     String name;
-
     boolean turn;
 
     public String getName(String name) {
@@ -15,6 +12,10 @@ public class Player {
     public Player(String name, String symbol) {
         this.name = name;
         this.symbol = symbol;
-
+        this.turn = turn;
+    }
+    public boolean isTurn(boolean turn) {
+        this.turn = turn;
+        return false;
     }
 }

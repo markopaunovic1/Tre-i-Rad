@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Main {
-
     static Board board = new Board();
 
     public static void main(String[] args) {
@@ -23,10 +22,9 @@ public class Main {
 
         while (true) {
             board.printBoard();
-            System.out.println("Choose a number between 1-9");
-            board.chooseBox();
+            System.out.println(p1.getName("123") + ", Choose a number between 1-9");
+            board.chooseBox("turn");
 
         }
-
     }
 }
