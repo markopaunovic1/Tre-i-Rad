@@ -1,14 +1,12 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Board {
-    char[][] layer = {{' ', '║', ' ', '║', ' '},
-            {'═', '╬', '═', '╬', '═',},
-            {' ', '║', ' ', '║', ' '},
-            {'═', '╬', '═', '╬', '═'},
-            {' ', '║', ' ', '║', ' '}};
 
-    ArrayList<String> users = new ArrayList<>();
+    char[][] layer = {{' ', '║', ' ', '║', ' '},
+                      {'═', '╬', '═', '╬', '═',},
+                      {' ', '║', ' ', '║', ' '},
+                      {'═', '╬', '═', '╬', '═'},
+                      {' ', '║', ' ', '║', ' '}};
 
     public void printBoard() {
 
@@ -20,23 +18,17 @@ public class Board {
         }
     }
 
-    public void chooseBox(String name) {
+    public void chooseBox(boolean player) {
 
+        System.out.println("player value:" +player);
         Scanner input = new Scanner(System.in);
-
-        Player p1 = new Player("P1", "X");
-        Player p2 = new Player("P2", "O");
-
         int playerChoose = input.nextInt();
-
-        users.add(p1.name);
-        users.add(p2.name);
 
         char symbol = ' ';
 
-        if (playerChoose == (symbol)) {
+        if (player) {
             symbol = 'X';
-        } else  {
+        } else {
             symbol = 'O';
         }
 
@@ -52,6 +44,7 @@ public class Board {
                 layer[0][4] = symbol;
                 break;
             case 4:
+
                 layer[2][0] = symbol;
                 break;
             case 5:
@@ -60,6 +53,7 @@ public class Board {
             case 6:
                 layer[2][4] = symbol;
                 break;
+
             case 7:
                 layer[4][0] = symbol;
                 break;
@@ -75,4 +69,5 @@ public class Board {
         }
     }
 }
+
 
