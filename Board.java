@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Board {
 
+    Player p1 = new Player("P1", 'X');
+    Player p2 = new Player("P2", 'O');
     char[][] layer = {{' ', '║', ' ', '║', ' '},
                       {'═', '╬', '═', '╬', '═',},
                       {' ', '║', ' ', '║', ' '},
@@ -20,11 +22,11 @@ public class Board {
 
     public void chooseBox(boolean player) {
 
-        System.out.println("player value:" +player);
+        System.out.println("player value:" + player);
         Scanner input = new Scanner(System.in);
         int playerChoose = input.nextInt();
 
-        char symbol = ' ';
+        char symbol;
 
         if (player) {
             symbol = 'X';
@@ -35,39 +37,95 @@ public class Board {
 
         switch (playerChoose) {
             case 1:
-                layer[0][0] = symbol;
-                break;
+                if (layer[0][0] == ' ') {
+                    layer[0][0] = symbol;
+                } break;
             case 2:
-                layer[0][2] = symbol;
-                break;
+                if (layer[0][2] == ' ') {
+                    layer[0][2] = symbol;
+                } break;
             case 3:
-                layer[0][4] = symbol;
-                break;
-            case 4:
+                if (layer[0][4] == ' ') {
+                    layer[0][4] = symbol;
+                } break;
 
-                layer[2][0] = symbol;
-                break;
+            case 4:
+                if (layer[2][0] == ' ') {
+                    layer[2][0] = symbol;
+                } break;
             case 5:
-                layer[2][2] = symbol;
-                break;
+                if (layer[2][2] == ' ') {
+                    layer[2][2] = symbol;
+                } break;
             case 6:
-                layer[2][4] = symbol;
-                break;
+                if (layer[2][4] == ' ') {
+                    layer[2][4] = symbol;
+                } break;
 
             case 7:
-                layer[4][0] = symbol;
-                break;
+                if (layer[4][0] == ' ') {
+                    layer[4][0] = symbol;
+                } break;
             case 8:
-                layer[4][2] = symbol;
-                break;
+                if (layer[4][2] == ' ') {
+                    layer[4][2] = symbol;
+                } break;
             case 9:
-                layer[4][4] = symbol;
-                break;
+                if (layer[4][4] == ' ') {
+                    layer[4][4] = symbol;
+                } break;
+
             default:
                 System.out.println(playerChoose + " Is not a valid number, only 1-9");
-                break;
+                  break;
+        }
+    }
+    public void checkWin(boolean player) {
+
+        char symbol;
+
+        if (player) {
+            symbol = 'X';
+        } else {
+            symbol = 'O';
+        }
+
+             // check if player wins (horizontal)
+
+        if (layer[0][0] == symbol && layer[0][2] == symbol && layer[0][4] == symbol) {
+            System.out.println(player + " You have won!");
+
+        } else if (layer[2][0]  == symbol && layer[2][2]  == symbol && layer[2][4]  == symbol) {
+            System.out.println(player + " You have won!");
+
+        } else if (layer[4][0]  == symbol && layer[4][2]  == symbol && layer[4][4]  == symbol) {
+            System.out.println(player + " You have won!");
+
+
+            // check if player wins (vertically)
+
+        }else if (layer[0][0] == symbol && layer[2][0] == symbol && layer[4][0] == symbol) {
+            System.out.println(player + " You have won!");
+
+        } else if (layer[0][2]  == symbol && layer[2][2]  == symbol && layer[4][2]  == symbol) {
+            System.out.println(player + " You have won!");
+
+        }else if (layer[0][4]  == symbol && layer[2][4]  == symbol && layer[4][4]  == symbol) {
+                    System.out.println(player + " You have won!");
+
+
+            // check if player wins (diagonal)
+
+        } else if (layer[0][0]  == symbol && layer[2][2]  == symbol && layer[4][4]  == symbol) {
+            System.out.println(player + " You have won!");
+
+        }else if (layer[0][4]  == symbol && layer[2][2]  == symbol && layer[4][0]  == symbol) {
+            System.out.println(player + " You have won!");
         }
     }
 }
+
+
+
 
 

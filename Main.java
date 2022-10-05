@@ -29,12 +29,15 @@ public class Main {
                 board.printBoard();
                 System.out.println(p1.name + ", Choose a number between 1-9");
                 board.chooseBox(isPlayer1);
+                board.checkWin(isPlayer1);
                 isPlayer1 = false;
+
 
             } else {
                 board.printBoard();
                 System.out.println(p2.name + ", Choose a number between 1-9");
                 board.chooseBox(isPlayer1);
+                board.checkWin(isPlayer1);
                 isPlayer1 = true;
             }
         }
