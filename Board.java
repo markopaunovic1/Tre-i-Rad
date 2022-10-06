@@ -1,6 +1,8 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Board {
+
+    static ArrayList<Character> playerPos = new ArrayList<>();
 
     Player p1 = new Player("P1", 'X');
     Player p2 = new Player("P2", 'O');
@@ -86,12 +88,43 @@ public class Board {
 
         if (player) {
             symbol = 'X';
+            playerPos.add(symbol);
         } else {
             symbol = 'O';
+            playerPos.add(symbol);
         }
 
-             // check if player wins (horizontal)
+        List<Character> row1 = List.of(symbol);
+        List<Character> row2 = List.of(symbol);
+        List<Character> row3 = List.of(symbol);
 
+        List<Character> column1 = List.of(symbol);
+        List<Character> column2 = List.of(symbol);
+        List<Character> column3 = List.of(symbol);
+
+        List<Character> diag1 = List.of(symbol);
+        List<Character> diag2 = List.of(symbol);
+
+        ArrayList<List<Character>> winner = new ArrayList<>();
+
+        winner.add(row1);
+        winner.add(row2);
+        winner.add(row3);
+
+        winner.add(column1);
+        winner.add(column2);
+        winner.add(column3);
+
+        winner.add(diag1);
+        winner.add(diag2);
+
+        for (List<Character> i : winner) {
+            if (playerPos.contains((i))) {
+                System.out.println("you won!");
+            }
+        }
+             // check if player wins (horizontal)
+        /*
         if (layer[0][0] == symbol && layer[0][2] == symbol && layer[0][4] == symbol) {
             System.out.println(player + " You have won!");
 
@@ -122,6 +155,8 @@ public class Board {
         }else if (layer[0][4]  == symbol && layer[2][2]  == symbol && layer[4][0]  == symbol) {
             System.out.println(player + " You have won!");
         }
+
+         */
     }
 }
 
