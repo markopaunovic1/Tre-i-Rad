@@ -1,11 +1,10 @@
 import java.util.*;
+import java.util.Scanner;
 
 public class Board {
-
     static ArrayList<Character> playerPos = new ArrayList<>();
 
-    Player p1 = new Player("P1", 'X');
-    Player p2 = new Player("P2", 'O');
+    // Print out the board and loop through so it is formed as a square
     char[][] layer = {{' ', '║', ' ', '║', ' '},
                       {'═', '╬', '═', '╬', '═',},
                       {' ', '║', ' ', '║', ' '},
@@ -22,145 +21,237 @@ public class Board {
         }
     }
 
-    public void chooseBox(boolean player) {
+    public int testInput() {
 
-        System.out.println("player value:" + player);
+        //
+
         Scanner input = new Scanner(System.in);
-        int playerChoose = input.nextInt();
 
-        char symbol;
+        int playerChoose = 0;
 
-        if (player) {
-            symbol = 'X';
-        } else {
-            symbol = 'O';
+        try {
+            playerChoose = input.nextInt();
+
+        } catch (Exception e) {
+
+            System.out.println("Please type only numbers between 1-9.");
         }
-
-
-        switch (playerChoose) {
-            case 1:
-                if (layer[0][0] == ' ') {
-                    layer[0][0] = symbol;
-                } break;
-            case 2:
-                if (layer[0][2] == ' ') {
-                    layer[0][2] = symbol;
-                } break;
-            case 3:
-                if (layer[0][4] == ' ') {
-                    layer[0][4] = symbol;
-                } break;
-
-            case 4:
-                if (layer[2][0] == ' ') {
-                    layer[2][0] = symbol;
-                } break;
-            case 5:
-                if (layer[2][2] == ' ') {
-                    layer[2][2] = symbol;
-                } break;
-            case 6:
-                if (layer[2][4] == ' ') {
-                    layer[2][4] = symbol;
-                } break;
-
-            case 7:
-                if (layer[4][0] == ' ') {
-                    layer[4][0] = symbol;
-                } break;
-            case 8:
-                if (layer[4][2] == ' ') {
-                    layer[4][2] = symbol;
-                } break;
-            case 9:
-                if (layer[4][4] == ' ') {
-                    layer[4][4] = symbol;
-                } break;
-
-            default:
-                System.out.println(playerChoose + " Is not a valid number, only 1-9");
-                  break;
-        }
+        return playerChoose;
     }
-    public void checkWin(boolean player) {
 
-        char symbol;
+    public int userInput() {
 
-        if (player) {
-            symbol = 'X';
-            playerPos.add(symbol);
-        } else {
-            symbol = 'O';
-            playerPos.add(symbol);
-        }
+        boolean inputIsInvalid = true;
 
-        List<Character> row1 = List.of(symbol);
-        List<Character> row2 = List.of(symbol);
-        List<Character> row3 = List.of(symbol);
+        int input = 0;
 
-        List<Character> column1 = List.of(symbol);
-        List<Character> column2 = List.of(symbol);
-        List<Character> column3 = List.of(symbol);
+        while (inputIsInvalid) {
+            input = testInput();
 
-        List<Character> diag1 = List.of(symbol);
-        List<Character> diag2 = List.of(symbol);
-
-        ArrayList<List<Character>> winner = new ArrayList<>();
-
-        winner.add(row1);
-        winner.add(row2);
-        winner.add(row3);
-
-        winner.add(column1);
-        winner.add(column2);
-        winner.add(column3);
-
-        winner.add(diag1);
-        winner.add(diag2);
-
-        for (List<Character> i : winner) {
-            if (playerPos.contains((i))) {
-                System.out.println("you won!");
+            if (input != 0) {
+                inputIsInvalid = false;
             }
         }
-             // check if player wins (horizontal)
-        /*
+        return input;
+    }
+
+
+    public void chooseBox(boolean player) {
+
+        boolean tryAgain = true;
+
+        while (tryAgain) {
+
+            // player choose what box to mark and if it is a valid box
+
+            int playerChoose = userInput();
+            char symbol;
+            if (player) {
+                symbol = 'X';
+            } else {
+                symbol = 'O';
+            }
+            switch (playerChoose) {
+                case 1:
+                    if (layer[0][0] == ' ') {
+                        layer[0][0] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 2:
+                    if (layer[0][2] == ' ') {
+                        layer[0][2] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 3:
+                    if (layer[0][4] == ' ') {
+                        layer[0][4] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 4:
+                    if (layer[2][0] == ' ') {
+                        layer[2][0] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 5:
+                    if (layer[2][2] == ' ') {
+                        layer[2][2] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 6:
+                    if (layer[2][4] == ' ') {
+                        layer[2][4] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 7:
+                    if (layer[4][0] == ' ') {
+                        layer[4][0] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 8:
+                    if (layer[4][2] == ' ') {
+                        layer[4][2] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                case 9:
+                    if (layer[4][4] == ' ') {
+                        layer[4][4] = symbol;
+                        tryAgain = false;
+                    } else {
+                        System.out.println(" Spot is already marked, please choose another spot");
+                    }
+                    break;
+
+                default:
+                    System.out.println(playerChoose + " please write an number between 1-9 and that is not taken.");
+                    break;
+            }
+        }
+    }
+
+    public boolean checkIfTie() {
+        boolean isGameTie = false;
+
+        //check if none of player has won
+        if ((layer[0][0] == 'X' || layer[0][0] == 'O') && (layer[0][2] == 'X' || layer[0][2] == 'O') && (layer[0][4] == 'X' || layer[0][4] == 'O') && (layer[2][0] == 'X' || layer[2][0] == 'O') && (layer[2][2] == 'X' || layer[2][2] == 'O') && (layer[2][4] == 'X' || layer[2][4] == 'O') && (layer[4][0] == 'X' || layer[4][0] == 'O') && (layer[4][2] == 'X' || layer[4][2] == 'O') && (layer[4][4] == 'X' || layer[4][4] == 'O')) {
+            System.out.println("TIE, NO WINNER!");
+            isGameTie = true;
+        }
+        return isGameTie;
+    }
+
+
+    //This method checks if a player has three of the same symbols
+
+    public boolean checkWin(boolean player, String playerName) {
+
+        char symbol;
+
+        if (player) {
+            symbol = 'X';
+            playerPos.add(symbol);
+        } else {
+            symbol = 'O';
+            playerPos.add(symbol);
+        }
+        boolean isGameOver = false;
+
+
+        // check if player wins (horizontal)
+
         if (layer[0][0] == symbol && layer[0][2] == symbol && layer[0][4] == symbol) {
-            System.out.println(player + " You have won!");
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
-        } else if (layer[2][0]  == symbol && layer[2][2]  == symbol && layer[2][4]  == symbol) {
-            System.out.println(player + " You have won!");
+        } else if (layer[2][0] == symbol && layer[2][2] == symbol && layer[2][4] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
-        } else if (layer[4][0]  == symbol && layer[4][2]  == symbol && layer[4][4]  == symbol) {
-            System.out.println(player + " You have won!");
+        } else if (layer[4][0] == symbol && layer[4][2] == symbol && layer[4][4] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
 
             // check if player wins (vertically)
 
-        }else if (layer[0][0] == symbol && layer[2][0] == symbol && layer[4][0] == symbol) {
-            System.out.println(player + " You have won!");
+        } else if (layer[0][0] == symbol && layer[2][0] == symbol && layer[4][0] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
-        } else if (layer[0][2]  == symbol && layer[2][2]  == symbol && layer[4][2]  == symbol) {
-            System.out.println(player + " You have won!");
+        } else if (layer[0][2] == symbol && layer[2][2] == symbol && layer[4][2] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
-        }else if (layer[0][4]  == symbol && layer[2][4]  == symbol && layer[4][4]  == symbol) {
-                    System.out.println(player + " You have won!");
+        } else if (layer[0][4] == symbol && layer[2][4] == symbol && layer[4][4] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
 
             // check if player wins (diagonal)
 
-        } else if (layer[0][0]  == symbol && layer[2][2]  == symbol && layer[4][4]  == symbol) {
-            System.out.println(player + " You have won!");
+        } else if (layer[0][0] == symbol && layer[2][2] == symbol && layer[4][4] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
 
-        }else if (layer[0][4]  == symbol && layer[2][2]  == symbol && layer[4][0]  == symbol) {
-            System.out.println(player + " You have won!");
+        } else if (layer[0][4] == symbol && layer[2][2] == symbol && layer[4][0] == symbol) {
+            System.out.println(playerName + " have won!");
+            isGameOver = true;
+        } else {
+            isGameOver = checkIfTie();
         }
+        if (isGameOver) {
 
-         */
+            printBoard();
+
+        }
+        return !isGameOver;
+    }
+
+    public void resGame() {
+
+        // Printing out new board to continue game
+
+        layer[0][0] = ' ';
+        layer[0][2] = ' ';
+        layer[0][4] = ' ';
+
+        layer[2][0] = ' ';
+        layer[2][2] = ' ';
+        layer[2][4] = ' ';
+
+        layer[4][0] = ' ';
+        layer[4][2] = ' ';
+        layer[4][4] = ' ';
     }
 }
-
-
-
-
-
