@@ -21,9 +21,9 @@ public class Board {
         }
     }
 
-    public int testInput() {
+    //This method catches exceptions if players enter a string
 
-        //
+    public int testInput() {
 
         Scanner input = new Scanner(System.in);
 
